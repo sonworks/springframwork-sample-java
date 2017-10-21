@@ -8,12 +8,15 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.sonworks.hellospring.service.HomeService;
 
 /**
  * Handles requests for the application home page.
@@ -22,6 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private HomeService homeService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -73,4 +79,14 @@ public class HomeController {
 		return param1;
 	}
 	
+    /**
+     * DBに接続して検索結果を返す
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/search/db", method = RequestMethod.GET, headers="Accept=application/json")
+    public @ResponseBody String searchDb() {
+        String result = homeService.searchDb();
+        return result;
+    }
 }
