@@ -1,0 +1,15 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse
+/target
+.project
+.classpath
+.settings
+
+# OS
+Thumbs.db
+.DS_Store
