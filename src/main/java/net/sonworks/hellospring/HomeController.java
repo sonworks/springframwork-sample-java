@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,6 +60,17 @@ public class HomeController {
 		Map<String, Object> list = new HashMap<String, Object>();
 		list.put("test", "list");
 		return list;
+	}
+
+	/**
+	 * 引数を返すAPIサンプル
+	 * @param param1
+	 * @return
+	 */
+	@RequestMapping(value="/param/{param1}", method=RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody String getParameter(@PathVariable("param1") String param1) {
+		logger.info("##### getParameter() param1=" + param1);
+		return param1;
 	}
 	
 }
