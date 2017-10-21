@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
@@ -34,6 +35,16 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	/**
+	 *  文字列を返すAPIサンプル
+	 * @return
+	 */
+	@RequestMapping(value="/string", method=RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody String getString() {
+		logger.info("##### getString()");
+		return "Hello, Spring!";
 	}
 	
 }
