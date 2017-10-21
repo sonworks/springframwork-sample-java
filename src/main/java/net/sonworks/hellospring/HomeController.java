@@ -2,7 +2,9 @@ package net.sonworks.hellospring;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +47,18 @@ public class HomeController {
 	public @ResponseBody String getString() {
 		logger.info("##### getString()");
 		return "Hello, Spring!";
+	}
+	
+	/**
+	 * 配列を返すAPIサンプル
+	 * @return
+	 */
+	@RequestMapping(value="/list", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody Map<String, Object> getList() {
+		logger.info("##### getList()");
+		Map<String, Object> list = new HashMap<String, Object>();
+		list.put("test", "list");
+		return list;
 	}
 	
 }
